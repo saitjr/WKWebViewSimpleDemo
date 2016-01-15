@@ -28,7 +28,7 @@
     _webView.navigationDelegate = self;
     [self.view addSubview:_webView];
     
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]]];
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
 }
 
 #pragma mark - WKNavigationDelegate
