@@ -36,8 +36,8 @@
     [config.userContentController addUserScript:script];
     
     _webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
-//    _webView.UIDelegate = self;
-//    _webView.navigationDelegate = self;
+    _webView.UIDelegate = self;
+    _webView.navigationDelegate = self;
     [_webView loadHTMLString:@"<head></head><img src='http://www.nsu.edu.cn/v/2014v3/img/background/3.jpg' />" baseURL:nil];
     [self.view addSubview:_webView];
 }
@@ -52,16 +52,11 @@
  *  @param frame             主窗口
  *  @param completionHandler 警告框消失调用
  */
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)())completionHandler {
-    
-    [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:message delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil] show];
-    
-    completionHandler();
-}
 
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
+    [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:message delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil] show];
     
-    
+    completionHandler(YES);
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *))completionHandler {
